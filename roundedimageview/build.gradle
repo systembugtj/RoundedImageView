@@ -1,100 +1,29 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
-apply plugin: 'signing'
+apply plugin: 'com.github.dcendents.android-maven'
 
-def sonatypeUsername = project.hasProperty('sonatypeUsername') ? sonatypeUsername : ""
-def sonatypePassword = project.hasProperty('sonatypePassword') ? sonatypePassword : ""
+group='com.github.systembugtj'
+version="1.1.1"
 
 android {
-  compileSdkVersion rootProject.ext.compileSdkVersion
-  buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
 
-  defaultConfig {
-    minSdkVersion 8
-    consumerProguardFiles 'release-proguard.cfg'
-    versionCode 1
-    versionName version
-  }
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 25
+        consumerProguardFiles 'release-proguard.cfg'
+        versionCode 1
+        versionName version
+    }
 
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_7
-    targetCompatibility JavaVersion.VERSION_1_7
-  }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildToolsVersion '25.0.0'
 }
 
 dependencies {
-  provided 'com.squareup.picasso:picasso:2.5.2'
-  provided 'com.android.support:support-annotations:23.1.0'
-}
-
-task androidJavadocs(type: Javadoc) {
-  source = android.sourceSets.main.java.source
-}
-
-task androidJavadocsJar(type: Jar) {
-  classifier = 'javadoc'
-  //basename = artifact_id
-  from androidJavadocs.destinationDir
-}
-
-task androidSourcesJar(type: Jar) {
-  classifier = 'sources'
-  //basename = artifact_id
-  from android.sourceSets.main.java.source
-}
-
-artifacts {
-  archives androidSourcesJar
-  archives androidJavadocsJar
-}
-
-signing {
-  required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
-  sign configurations.archives
-}
-
-uploadArchives {
-  repositories.mavenDeployer {
-    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-    repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
-      authentication(userName: sonatypeUsername, password: sonatypePassword)
-    }
-
-    snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
-      authentication(userName: sonatypeUsername, password: sonatypePassword)
-    }
-
-    pom {
-      project {
-        name 'RoundedImageView'
-        packaging 'aar'
-
-        description 'Fast ImageView with support for rounded corners and borders'
-        url 'https://github.com/vinc3m1/RoundedImageView'
-
-        scm {
-          url 'scm:git@github.com:vinc3m1/RoundedImageView.git'
-          connection 'scm:git@github.com:vinc3m1/RoundedImageView.git'
-          developerConnection 'scm:git@github.com:vinc3m1/RoundedImageView.git'
-        }
-
-        licenses {
-          license {
-            name 'The Apache Software License, Version 2.0'
-            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-            distribution 'repo'
-          }
-        }
-
-        developers {
-          developer {
-            id 'vinc3m1'
-            name 'Vince Mi'
-            email 'vince@makeramen.com'
-          }
-        }
-      }
-    }
-  }
+    provided 'com.squareup.picasso:picasso:2.5.2'
+    provided 'com.android.support:support-annotations:25.3.0'
 }
