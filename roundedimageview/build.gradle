@@ -11,7 +11,7 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
-        consumerProguardFiles 'release-proguard.cfg'
+        consumerProguardFiles 'proguard-release.pro'
         versionCode 1
         versionName version
     }
@@ -20,10 +20,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    buildToolsVersion '25.0.0'
 }
 
 dependencies {
     provided 'com.squareup.picasso:picasso:2.5.2'
     provided 'com.android.support:support-annotations:25.3.0'
+    compile 'com.android.support:support-v4:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.0'
 }
