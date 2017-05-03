@@ -29,7 +29,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
