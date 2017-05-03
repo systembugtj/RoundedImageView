@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group='com.github.systembugtj'
-version="1.2.0"
+version="1.2.1"
 
 android {
     compileSdkVersion 25
@@ -14,11 +14,6 @@ android {
         consumerProguardFiles 'proguard-release.pro'
         versionCode 1
         versionName version
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
